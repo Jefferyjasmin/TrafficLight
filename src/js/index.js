@@ -12,4 +12,19 @@ import "../styles/index.scss";
 import { Trafficlight } from "./component/Trafficlight";
 
 //render your react application
-ReactDOM.render(<Trafficlight />, document.querySelector("#app"));
+var previoussColor = "red";
+function runningLight() {
+	if (previoussColor == "red") {
+		previoussColor = "green";
+	} else if (previoussColor == "green") {
+		previoussColor = "yellow";
+	} else if (previoussColor == "yellow") {
+		previoussColor = "red";
+	}
+	ReactDOM.render(
+		<Trafficlight color={previoussColor} />,
+		document.querySelector("#app")
+	);
+}
+
+setInterval(runningLight, 1000);
